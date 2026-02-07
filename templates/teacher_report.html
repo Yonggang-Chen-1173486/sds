@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}Teacher Report - SDS{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">Teacher Report</h2>
+
+{% if classes %}
+  {% set current_teacher = None %}
+  
+  {% for class in classes %}
+    {% if current_teacher != class.teacher_id %}
+      {% if current_teacher is not none %}
+        </div>  
+        </div>  
+      {% endif %}
+      
+      <div class="card mb-4">
+        <div class="card-header bg-primary text-white">
+          <h4 class="mb-0">{{ class.first_name }} {{ class.last_name }}</h4>
+          <p class="mb-0 mt-2">Unique Students: {{ unique_counts[class.teacher_id] }}</p>
+        </div>
+        <div class="card-body">
+      
+      {% set current_teacher = class.teacher_id %}
+    {% endif %}
+    
+    <div class="mb-3">
+      <h5>{{ class.class_name }} ({{ class.dancetype_name }})</h5>
+      <p class="mb-1"><strong>Students:</strong> {{ class.student_count }}</p>
+    </div>
+    
+    {% if loop.last %}
+        </div>  
+      </div>  
+    {% endif %}
+  {% endfor %}
+{% else %}
+  <div class="alert alert-info">
+    No teacher data available.
+  </div>
+{% endif %}
+{% endblock %}

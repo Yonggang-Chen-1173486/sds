@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Enrol Student{% endblock %}
+
+{% block content %}
+<h2>Enrol {{ student.first_name }} {{ student.last_name }}</h2>
+
+{% if classes %}
+<form method="POST">
+  <div class="mb-3">
+    <label class="form-label">Select Class:</label>
+    <select name="class_id" class="form-select" required>
+      <option value="" selected disabled>Choose a class...</option>
+      {% for class in classes %}
+      <option value="{{ class.class_id }}">
+        {{ class.class_name }} ({{ class.dancetype_name }} - {{ class.grade_name }})
+      </option>
+      {% endfor %}
+    </select>
+  </div>
+  <button type="submit" class="btn btn-success">Enrol</button>
+  <a href="{{ url_for('student_summary', student_id=student.student_id) }}" class="btn btn-outline-secondary">Cancel</a>
+</form>
+{% else %}
+<div class="alert alert-warning">
+  No classes available for enrolment.
+</div>
+<a href="{{ url_for('student_summary', student_id=student.student_id) }}" class="btn btn-outline-secondary">Back to Student</a>
+{% endif %}
+{% endblock %}

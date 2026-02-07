@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}Classes - SDS{% endblock %}
+
+{% block content %}
+<h2>Classes</h2>
+
+{% for class in classes %}
+<div class="card mb-3">
+  <div class="card-header">
+    <strong>{{ class.class_name }}</strong> - {{ class.dancetype_name }} ({{ class.grade_name }})
+  </div>
+  <div class="card-body">
+    <p><strong>Teacher:</strong> {{ class.first_name }} {{ class.last_name }}</p>
+    <p><strong>Schedule:</strong> {{ class.schedule_day }} at {{ class.schedule_time }}</p>
+    
+    <h6>Students:</h6>
+    {% if class.students %}
+    <ul>
+      {% for student in class.students %}
+      <li>
+        <a href="{{ url_for('student_summary', student_id=student.student_id) }}">
+          {{ student.first_name }} {{ student.last_name }}
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <p class="text-muted">No students enrolled</p>
+    {% endif %}
+  </div>
+</div>
+{% endfor %}
+{% endblock %}

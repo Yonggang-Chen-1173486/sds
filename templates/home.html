@@ -1,16 +1,18 @@
 {% extends "base.html" %}
 
-{% block title %}Home - SVS{% endblock %}
+{% block title %}Home - SDS{% endblock %}
 
 {% block content %}
-
-<h2>Home </h2>
-
-
-<p class="text-success"><strong>If you can see this in PythonAnywhere, your app is loading correctly. </strong> </p>
-
-
-<p>Add some brief text and an image here </p>
-
-
+<div class="row">
+  <div class="col-md-6">
+    <h1>Selwyn Dance School</h1>
+    <p class="lead">Professional dance instruction for all ages and skill levels.</p>
+    <p>We offer classes in Ballet, Jazz, Modern, and Tap with experienced teachers guiding students from beginner to advanced levels.</p>
+  </div>
+  <div class="col-md-6">
+    <img src="../static/dance.png" 
+         alt="Dance class" class="img-fluid rounded">
+    <p class="text-muted mt-2"><small>Image source: Google Search</small></p>
+  </div>
+</div>
 {% endblock %}
