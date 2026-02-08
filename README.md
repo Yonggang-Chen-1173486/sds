@@ -21,3 +21,11 @@ All code was reviewed, tested, and understood before implementation.
 
 ## Image Source
 Home page image from Goole Search - not copyrighted
+
+## Database Question
+To add parents functionality:
+1. Create the parents entity/table with id, firstname, lastname, contact details, gender and other necessary information
+2. Create student_parents junction table for many-to-many relationships as one child can have both mother and father in the database. One mother can have 2 kids in the same dance school.
+3. In the student list route, joins will be needed to link students'data and parents' data.
+4. In the student_list html form, further modification will be needed to display the names and contact details of parents for each student
+This solution creates database to store parents' information, allow our web app to connect to this database, retrive data then utilise the data to present on the web.
