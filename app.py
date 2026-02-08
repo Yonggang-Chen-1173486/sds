@@ -26,7 +26,7 @@ def home():
 @app.route("/teachers", methods=["GET"])
 def teacher_list():
     cursor = db.get_cursor()
-    querystr = "SELECT teacher_id, first_name, last_name FROM teachers;" 
+    querystr = "SELECT teacher_id, first_name, last_name, email, phone, is_active FROM teachers ORDER BY last_name, first_name;" 
     cursor.execute(querystr)        
     teachers = cursor.fetchall()
     cursor.close()

@@ -4,22 +4,56 @@
 
 {% block content %}
 
-<h2>Services</h2>
+<h2 class="mb-4">Teachers</h2>
 
-<p class="text-success"><strong>Our wonderful team of dance teachers brings more than just experience to the floor. They are passionate, friendly, and dedicated to creating a positive learning environment where students of all levels thrive and keep coming back for more!.</strong>  </p>
+<p>Our wonderful team of dance teachers brings more than just experience to the floor. They are passionate, friendly, and dedicated to creating a positive learning environment where students of all levels thrive and keep coming back for more!  </p>
 
-<table class="table">
-    <tr>
-        <th>Teacher ID</th>
-        <th>Name</th>
-    </tr>
-    {% for teacher in teachers %}
-    <tr>
-        <td>{{ teacher.teacher_id }}</td>
-        <td>{{teacher.first_name}} {{teacher.last_name}}</td>
-    </tr>
-    {% endfor %}
+<!-- 使用与 Students 页面相同的表格样式 -->
+<table class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for teacher in teachers %}
+        <tr>
+            <td>
+                <strong>{{ teacher.first_name }} {{ teacher.last_name }}</strong>
+            </td>
+            <td>
+                {% if teacher.email %}
+                    <a href="mailto:{{ teacher.email }}">{{ teacher.email }}</a>
+                {% else %}
+                    <span class="text-muted">-</span>
+                {% endif %}
+            </td>
+            <td>
+                {% if teacher.phone %}
+                    {{ teacher.phone }}
+                {% else %}
+                    <span class="text-muted">-</span>
+                {% endif %}
+            </td>
+            <td>
+                {% if teacher.is_active %}
+                    <span class="badge bg-success">Active</span>
+                {% else %}
+                    <span class="badge bg-secondary">Inactive</span>
+                {% endif %}
+            </td>
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="5" class="text-center text-muted py-4">
+                No teachers found in the system.
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
 </table>
-
 
 {% endblock %}
